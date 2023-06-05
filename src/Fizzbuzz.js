@@ -1,45 +1,59 @@
-import  { useState }  from 'react';
-import { Button } from './Button';
-import './Fizzbuzz.css'
+import { useState } from "react";
+import Button from "./Button";
+import "./Fizzbuzz.css";
 
-const Fizzbuzz = () =>{
+const Fizzbuzz = () => {
+  const [count, setCount] = useState(1);
 
-    const [count,setCount] = useState(1);
+  const play = () => {
+    if (count % 3 === 0 && count % 15 !== 0) return "Fizz";
+    else if (count % 5 === 0 && count % 15 !== 0) return "Buzz";
+    else if (count % 15 === 0) return "FizzBuzz";
+    else return count;
+  };
 
-    const Increment =()=>{
-        setCount(count+1)
-    }
+  const getUIStyles = (result) => {
+    if (result === "Fizz" || result === "Buzz" || result === "FizzBuzz")
+      return result.toLowerCase();
+    return "count-color";
+  };
 
-    const Decrement =()=>{
-        setCount((count)=>{
-            const result = count-1;
-            if(result<1){
-                return 1;
-            }
-            return result;
-        })
-    }
+  const playUI = () => {
+    const result = play();
+    const className = getUIStyles(result);
+    return <div className={className}>{result}</div>;
+  };
 
-    return(
-        <div>
-            <Button onClick={Increment} text='Increment'/>
-            <Button onClick={Decrement} text='Decrement'/>
+  const incrementCounter = () => {
+    setCount(count + 1);
+  };
 
-            <div id='counter'>
-                {count % 3 === 0 && count % 15 !== 0 && (
-                <div className='fizz'>Fizz</div>
-                )}
-                {count % 5 === 0 && count % 15 !== 0 && (
-                <div  className='buzz'>Buzz</div>
-                )}
-                {count % 15 === 0 && <div  className='fizzbuzz'>FizzBuzz</div>}
-                {count % 15 !== 0 && count % 3 !== 0 && count % 5 !== 0 && (
-                <div className='count-color'>{count}</div>
-                )}
-            </div>
-        </div>
-    )
-}
+  const decrementCounter = () => {
+    setCount((count) => {
+      if (count - 1 < 1) {
+        return 1;
+      }
+      return count - 1;
+    });
+  };
+
+  return (
+    <div data-testid="fizzBuzz">
+      <Button
+        data-testid="incrementCounter"
+        onClick={incrementCounter}
+        text="Increment"
+      />
+      <Button
+        data-testid="decrementCounter"
+        onClick={decrementCounter}
+        text="Decrement"
+      />
+      <div data-testid="result" id="counter">
+        {playUI()}
+      </div>
+    </div>
+  );
+};
 
 export default Fizzbuzz;
-  

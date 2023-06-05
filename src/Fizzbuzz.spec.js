@@ -1,23 +1,15 @@
 import userEvent from "@testing-library/user-event";
 import { Fizzbuzz } from "./Fizzbuzz";
-import {render,screen} from '@testing-library/react';
+import { render, screen, fireEvent } from "@testing-library/react";
 
-
-// test("it should show number when value is not divisible by 3 or 5",()=>{
-//   render(<Fizzbuzz/>);
-//   const count = screen.queryByText(1);
-//   expect(count).toBeVisible();
-// })
-
-test("it should show count when value is not divisible by 3 ",()=>{
-  render(<Fizzbuzz/>);
-  const incrementButton = screen.getByText('Increment');
-  userEvent.click(incrementButton)
-  const count = screen.queryByText(1);
-  expect(count).toBeVisible();
-})
-
-
+test("it should show count when value is not divisible by 3 ", () => {
+  render(<Fizzbuzz />);
+  const incrementButton = screen.getByTestId("incrementCounter");
+  fireEvent(incrementButton);
+  const result = screen.getByTestId("result");
+  expect(result).toBeVisible();
+  expect(result).toHaveTextContent("2");
+});
 
 // describe("Fizzbuzz", () => {
 //   it("should return the numbers passed in that are not divisible by 3 or 5", () => {
@@ -49,10 +41,7 @@ test("it should show count when value is not divisible by 3 ",()=>{
 //   });
 // });
 
-
 // // add negative test cases
-
-
 
 // test('fiz test case', () =>{
 //   expect(Fizzbuzz(3)).toBe('fizz');
