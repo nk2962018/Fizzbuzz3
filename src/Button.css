@@ -1,0 +1,10 @@
+.btn-primary{
+    color:white;
+    background-color:firebrick;
+    border-color:firebrick;
+    border-radius: 5px;
+    padding:10px;
+    margin:10px;
+    width: 8rem;
+
+}
