@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "./Button";
-import "./Fizzbuzz.css";
+import Button from "../components/Button";
+import "../styles/Fizzbuzz.css";
 
 const Fizzbuzz = () => {
   const [count, setCount] = useState(1);
@@ -40,12 +40,10 @@ const Fizzbuzz = () => {
   return (
     <div data-testid="fizzBuzz">
       <Button
-        data-testid="incrementCounter"
         onClick={incrementCounter}
         text="Increment"
       />
       <Button
-        data-testid="decrementCounter"
         onClick={decrementCounter}
         text="Decrement"
       />

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import App from "./components/App/App";
+import App from "../components/App";
 
 describe("The App works fine when", () => {
   beforeEach(() => {
@@ -7,14 +7,14 @@ describe("The App works fine when", () => {
   });
 
   it("should have the app loaded", () => {
-    const header = screen.getByTestId("parent");
-    expect(header).toBeInTheDocument();
+    const appComponent = screen.getByTestId("parent");
+    expect(appComponent).toBeInTheDocument();
   });
 
   it("should have the header loaded", async () => {
     const header = screen.getByTestId("header");
     expect(header).toBeInTheDocument();
-  });
+  }); 
 
   it("should have the proper header name", async () => {
     const header = screen.getByTestId("header");
@@ -27,12 +27,4 @@ describe("The App works fine when", () => {
   });
 });
 
-/*
-1. Write the test case
-2. Write the implementation to pass the test case
-3. Commit your changes (feat: add ) Only present tense
-4. Do the refacotring if any
-5. Commit the changes (refactor: update ...) Only present tense
-6. Repeat the step from 1
 
-*/
